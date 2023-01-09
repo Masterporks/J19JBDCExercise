@@ -57,31 +57,52 @@ public class Grades {
         }
     }
     public static boolean createNewGrade() {
-        // Add prompts to tell the user what data they need to enter next
-        System.out.print("Enter the students id: ");
-        int studentsId = scanner.nextInt();
 
-        System.out.print("Enter the new score: ");
-        int score = scanner.nextInt();
+            //Add prompts to tell the user what data they need to enter next
+            System.out.print("Enter the new score: ");
+            int score = scanner.nextInt();
+            String grade = null;
 
-        System.out.print("Enter the new grade: ");
-        String grade = scanner.nextLine();
+            if (score <= 40) {
+                grade = "F";
+
+                System.out.println(grade);
+            } else if (score > 40 && score <= 49) {
+                grade = "D";
+
+                System.out.println(grade);
+            } else if (score > 49 && score <= 59) {
+                grade = "C";
+
+                System.out.println(grade);
+            } else if (score > 59 && score <= 69) {
+                grade = "B";
+
+                System.out.println(grade);
+            } else if (score > 69 && score <= 100) {
+                grade = "A";
+
+                System.out.println(grade);
+            }
 
 
+            System.out.print("Enter the students id: ");
+            int studentId = scanner.nextInt();
 
 
-        try {
-            ps = connection.prepareStatement("INSERT INTO Grades(students_id, score, grade) " +
-                    "VALUES(" + studentsId + "," + score + ", '" + grade + "')");
+            try {
+                ps = connection.prepareStatement("INSERT INTO grades(score, grade, students_id) " +
+                        "VALUES(" + score + ", '" + grade + "', " + studentId + ")");
 
-            ps.execute();
+                ps.execute();
 
-            return true;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
+                return true;
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return false;
+            }
+
         }
-    }
     //Implement a method to update an item using its id where its id should be passed by the user,
     // i.e use the scanner class to get the id.
 
@@ -96,7 +117,7 @@ public class Grades {
         String grade = scanner.nextLine();
 
         System.out.print("Enter the id you want to update: ");
-        int id = scanner.nextInt();
+        int studentId = scanner.nextInt();
 
 
 
@@ -107,7 +128,7 @@ public class Grades {
             ps = connection.prepareStatement("UPDATE items SET " +
                     "score = " + score + ", " +
                     "grade = '" + grade + "'," +
-                    "WHERE id = " + id);
+                    "WHERE id = " + studentId);
 
             ps.execute();
 
@@ -125,16 +146,15 @@ public class Grades {
     //The second method should be called getItemBy() and it should prompt
     //the user to also the id of the item in question
     public static boolean deleteGrade() {
-        // Update prompts to tell the user what data they need to enter next
 
 
-        System.out.print("Enter the id you want to delete: ");
-        int id = scanner.nextInt();
+
+        System.out.print("Enter the grades id you want to delete: ");
+        int studentId = scanner.nextInt();
 
 
         try {
-            ps = connection.prepareStatement("DELETE FROM Grades " + " " +
-                    "WHERE id = " + id);
+            ps = connection.prepareStatement("DELETE FROM grades WHERE id = "+studentId+"");
 
             ps.execute();
 
@@ -144,6 +164,5 @@ public class Grades {
             return false;
         }
     }
-
 
 }

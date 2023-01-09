@@ -5,7 +5,7 @@ import org.example.tables.Grades;
 import org.example.tables.Students;
 
 public class Main {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         //Create a table called Students and another table called Grades
         //The columns on the students table should be as follows: id, name, age
         //Complete the controllers for the students table by adding methods
@@ -18,10 +18,21 @@ public class Main {
         // Complete the controller on the Grades table to have Create  Read and Delete operation
         //For the read operation , you should be able to see the students information as well
 
-        Students.createStudentsTable();
-        Grades.createGradesTable();
-        Menu.mainMenu();
+
+
+            Menu.mainMenu();
+
+            Students.createStudentsTable();
+            Grades.createGradesTable();
+
+            //Students.createNewStudent();
+            Students.getAllStudents();
+            Grades.getAllGrades();
+            //Grades.createNewGrade();
+            //  Grades.getAllGrades();
+            // Students.deleteStudent();
+
+        }
+
+
     }
-
-
-}

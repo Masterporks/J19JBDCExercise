@@ -32,23 +32,25 @@ public class Students {
     public static void getAllStudents() {
 
 
-        try {
-            ps = connection.prepareStatement("SELECT * FROM Students");
+        try{
+            ps = connection.prepareStatement("SELECT * FROM students");
             rs = ps.executeQuery();
 
-            // Loop through the result set
+            //Loop through the result set
             while (rs.next()) {
-                String id = "id: " + rs.getInt("id");
-                String firstName = "first_name: " + rs.getString("first_name");
-                String lastName = "last_name: " + rs.getString("last_name");
-                String age = "age: " + rs.getInt("age");
-                System.out.println(id + " " + firstName + " " +  lastName +  " "+ age + " ");
+                String id = "student_id: " + rs.getInt("student_id");
+                String name = "name: " + rs.getString("name");
+                String age = "age: " + rs.getString("age");
 
+
+
+                System.out.println(id + " " + name + " " + age);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
     public static boolean createNewStudent() {
         // Add prompts to tell the user what data they need to enter next
         System.out.print("Enter the Student's first name: ");
@@ -119,18 +121,20 @@ public class Students {
     //The second method should be called getItemBy() and it should prompt
     //the user to also the id of the item in question
     public static boolean deleteStudent() {
-        // Update prompts to tell the user what data they need to enter next
 
 
-        System.out.print("Enter the id you want to delete: ");
+        System.out.print("Enter the student's id you want to delete: ");
         int id = scanner.nextInt();
 
 
         try {
-            ps = connection.prepareStatement("DELETE FROM Students " + " " +
-                    "WHERE id = " + id);
 
+            ps = connection.prepareStatement("DELETE FROM grades WHERE student_id =" +id);
             ps.execute();
+
+            ps = connection.prepareStatement("DELETE FROM students WHERE student_id = "+id+"");
+            ps.execute();
+
 
             return true;
         } catch (SQLException e) {
@@ -138,6 +142,4 @@ public class Students {
             return false;
         }
     }
-
-
 }

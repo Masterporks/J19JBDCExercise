@@ -38,7 +38,7 @@ public class Menu {
         System.out.println("1. Get All Students");
         System.out.println("2. Create New Student");
         System.out.println("3. Update Student");
-        System.out.println("2. Delete Student");
+        System.out.println("4. Delete Student");
 
 
         System.out.println();
@@ -79,7 +79,7 @@ public class Menu {
         System.out.println("1. Get All Grades");
         System.out.println("2. Create New Grade");
         System.out.println("3. Update Grade");
-        System.out.println("2. Delete Grade");
+        System.out.println("4. Delete Grade");
 
 
         System.out.println();
